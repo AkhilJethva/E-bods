@@ -1,0 +1,33 @@
+.userRegister{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 90vh;
+    background-color: hsl(67, 10%, 84%);
+}
+.userRegister__body{
+    display: flex;
+    flex-direction: column;
+    background-color: #ededed;
+    width: 50%;
+    height: auto;
+    /* box-shadow: -1px 4px 20px -6px black ; */
+    padding: 30px;
+}
+.userRegister__btn{
+    background-color: rgb(41, 90, 196) ;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .userRegister{
+        height: auto;
+        
+    }
+    .userRegister__body{
+        height: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        width: 90%;
+    }
+}
