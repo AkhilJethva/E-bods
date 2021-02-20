@@ -2,7 +2,7 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const admin = require('./build/Admins.json');
 const approvers = require('./build/Approvers.json')
-const donationSystem = require('./build/DonationSyatem.json')
+const donationSystem = require('./build/DonationSystem.json')
 const hospital = require('./build/Hospital.json')
 const hospitals = require('./build/Hospitals.json')
 const request = require('./build/Request.json')
@@ -29,11 +29,11 @@ const web3 = new Web3(provider);
 		// 	gas: '2000000'
 		// });
 
-		//deploy approvers
-		// const ApproversdeployedContract = await new web3.eth.Contract(approvers.abi)
+		// //deploy hospitals
+		// const approversdeployedContract = await new web3.eth.Contract(approvers.abi)
 		// .deploy({
 		// 	data: '0x' + approvers.evm.bytecode.object,
-		
+		// 	arguments: ['0x07394DB8A958F394f39ef70271d340A9Ae234F89']
 		// })
 		// .send({
 		// 	from: accounts[0],
@@ -42,15 +42,15 @@ const web3 = new Web3(provider);
 
 		
 		//deploy donation system
-		const DonationSystemdeployedContract = await new web3.eth.Contract(donationSystem.abi)
-		.deploy({
-			data: '0x' + donationSystem.evm.bytecode.object,
+		// const DonationSystemdeployedContract = await new web3.eth.Contract(donationSystem.abi)
+		// .deploy({
+		// 	data: '0x' + donationSystem.evm.bytecode.object,
 		
-		})
-		.send({
-			from: accounts[0],
-			gas: '2000000'
-		});
+		// })
+		// .send({
+		// 	from: accounts[0],
+		// 	gas: '2000000'
+		// });
 
 		// //deploy hospital
 		// const HospitaldeployedContract = await new web3.eth.Contract(hospital.abi)
@@ -67,7 +67,7 @@ const web3 = new Web3(provider);
 		// const HospitalsdeployedContract = await new web3.eth.Contract(hospitals.abi)
 		// .deploy({
 		// 	data: '0x' + hospitals.evm.bytecode.object,
-		
+		// 	arguments: ['0x07394DB8A958F394f39ef70271d340A9Ae234F89']
 		// })
 		// .send({
 		// 	from: accounts[0],
@@ -101,22 +101,22 @@ const web3 = new Web3(provider);
 	// 	`Admin Contract deployed at address: ${AdmindeployedContract.options.address}`
 	// );
 	// console.log(
-	// 	`Admin Contract deployed at address: ${ApproversdeployedContract.options.address}`
-	// );
-	console.log(
-		`Admin Contract deployed at address: ${DonationSystemdeployedContract.options.address}`
-	);
-	// console.log(
-	// 	`Admin Contract deployed at address: ${HospitaldeployedContract.options.address}`
+	// 	`Approvers Contract deployed at address: ${approversdeployedContract.options.address}`
 	// );
 	// console.log(
-	// 	`Admin Contract deployed at address: ${HospitalsdeployedContract.options.address}`
+	// 	`DonationSystem Contract deployed at address: ${DonationSystemdeployedContract.options.address}`
 	// );
 	// console.log(
-	// 	`Admin Contract deployed at address: ${RequestdeployedContract.options.address}`
+	// 	`Hospital Contract deployed at address: ${HospitaldeployedContract.options.address}`
 	// );
 	// console.log(
-	// 	`Admin Contract deployed at address: ${UserdeployedContract.options.address}`
+	// 	`Hospitals Contract deployed at address: ${HospitalsdeployedContract.options.address}`
+	// );
+	// console.log(
+	// 	`Request Contract deployed at address: ${RequestdeployedContract.options.address}`
+	// );
+	// console.log(
+	// 	`User Contract deployed at address: ${UserdeployedContract.options.address}`
 	// );
 
 	provider.engine.stop();

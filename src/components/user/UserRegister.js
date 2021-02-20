@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText, CustomInput} from 'reactstrap';
 import './UserRegister.css'
-import firebase from '../../config/fbconfig';
+import firebase from '../../config/fbconfig'
 
 
-function UserRegister() {
+
+function UserRegister(props) {
 
     
     const [email, setemail] = useState("")
@@ -12,23 +13,32 @@ function UserRegister() {
     const [fullname, setfullname] = useState("")
     const [mobile, setmobile] = useState("")
     const [file, setFile] = useState(null);
-    const [url, setURL] = useState("");
+  
 
     const handleSubmit = (event) => {
         event.preventDefault();
         
-       
-        const uploadTask = firebase.storage().ref(`images`).child(file.name);
-        uploadTask.put(file)
+        // props.fileUpload(file)
         
+            const storageRef = firebase.storage().ref()
+            const fileRef = storageRef.child(`documents/${file.name}`)
+            fileRef.put(file)
+            .then((snap) => console.log('upload successful', snap))
+            .catch((err) => console.error('error uploading file', err))
+        
+        
+
+
         setemail("")
         setaadhar("")
         setfullname("")
         setmobile("")
+        setFile(null)
     }
 
 
     const handleDocChange = (e) => {
+
         setFile(e.target.files[0]);
     }
 
@@ -76,7 +86,6 @@ function UserRegister() {
                         <CustomInput type="file"
 
                             onChange={ handleDocChange}
-                            accept="application/pdf,application/vnd.ms-excel"  
                             id="exampleCustomFileBrowser" name="customFile"  />
                         <FormText color="muted">
                             This is some placeholder block-level help text for the above input.
@@ -99,4 +108,11 @@ function UserRegister() {
     )
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//       fileUpload: (file) => dispatch(fileUpload(file))
+//     }
+//   }
+
+// export default connect(null,mapDispatchToProps)(UserRegister)
 export default UserRegister

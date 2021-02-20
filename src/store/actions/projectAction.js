@@ -1,22 +1,27 @@
-export const createProject = (project) =>{
-
-    return (dispatch, getState, { getFirebase, getFirestore }) =>{
-        //make asycn call to database
-        const firestore = getFirestore();
-        const profile = getState().firebase.profile;
-        const authId = getState().firebase.auth.uid;
-        firestore.collection('projects').add({
-            ...project,
-            authorFirstName: profile.firstName,
-            authorLastName: profile.lastName,
-            authorId: authId,
-            createdAt: new Date()
-        }).then( ()=>{
-            dispatch({type: 'CREATE_PROJECT', project});
-        }).catch( (err) =>{
-            dispatch({type: 'CREATE_PROJECT_ARROR',err});
-        })
-
+export const  fileUpload = (file) =>{
+    return (dispatch, getState , { getFirebase,getFirestore }) =>{
+        const firebase = getFirebase();
         
+        const storageRef = firebase.storage().ref()
+        const fileRef = storageRef.child(`images/${file.name}`)
+        fileRef
+            .put(file)
+            .then((snap) => console.log('upload successful', snap))
+            .catch((err) => console.error('error uploading file', err))
+
+        // firebase.auth().createUserWithEmailAndPassword(
+        //     newUser.email,
+        //     newUser.password
+        // ).then((resp) => {
+        //     return firestore.collection('users').doc(resp.user.uid).set({
+        //         firstName: newUser.firstName,
+        //         lastName: newUser.lastName,
+        //         initials: newUser.firstName[0] + newUser.lastName[0]
+        //     })
+        // }).then(()=>{
+        //     dispatch({ type: 'SIGNUP_SUCCESS' })
+        // }).catch((err)=>{
+        //     dispatch({type: 'SIGNUP_ERROR', err})
+        // })
     }
-};
+}

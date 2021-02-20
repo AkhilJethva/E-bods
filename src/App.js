@@ -25,6 +25,7 @@ function App(props) {
             {/* <PublicRoute exact path="/home" component={Home} /> */}
             <PublicRoute exact path="/contactus" component={ContactUs} />
             <PrivateRoute exact path="/home"><Home /></PrivateRoute>
+            <PrivateRoute exact path="/"><Home /></PrivateRoute>
             <PublicRoute exact path="/userRegister" component={UserRegister} />
           </Switch>
           <Footer />

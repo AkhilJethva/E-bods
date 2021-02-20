@@ -1,9 +1,9 @@
-import { faAddressBook, faAddressCard, faArrowRight, faCoffee, faEnvelope, faGreaterThan, faLessThan, faLocationArrow, faPaperPlane, faPhone, faPlane, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faEnvelope, faGreaterThan, faPaperPlane, faPhone,  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Col,Row, Container, Form, FormGroup, Label, Input,List, NavItem } from 'reactstrap'
+import { Col,Row, Container, Form, FormGroup,Input,List,} from 'reactstrap'
 import './Footer.css'
-import g from '../../Images/icons/google-plus-square-brands.svg'
+
 import { Button,NavLink } from 'reactstrap'
 
 
@@ -56,7 +56,6 @@ function Footer() {
                                         </div>
                                         {/* <li className="footer__links">Vestibulum laoreet porttitor sem</li>
                                         <li className="footer__links">Ac tristique libero volutpat at</li> */}
-                                  
                                 </List>
                             </div>
                     </Col>
