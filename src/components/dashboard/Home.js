@@ -37,7 +37,7 @@ function Home() {
     return (
         <div className="home">
             <Jumbotron>
-                <h1 className="display-4">Hello, Welcome to E-BODS! <img src="https://img.icons8.com/nolan/64/ethereum.png"/></h1>
+                <h1 className="display-4">Hello, Welcome to E-BODS! <img src="https://img.icons8.com/nolan/64/ethereum.png" alt="ether"/></h1>
                 <p className="lead"> The Futuristic and Digital Secured Donation System. </p>
             </Jumbotron>
             <div  className="home__slider">

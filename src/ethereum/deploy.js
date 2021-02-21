@@ -18,16 +18,16 @@ const web3 = new Web3(provider);
 	const accounts = await web3.eth.getAccounts();
 
 	console.log(`Attempting to deploy from account: ${accounts[0]}`);
-		// //deploy admin
-		// const AdmindeployedContract = await new web3.eth.Contract(admin.abi)
-		// .deploy({
-		// 	data: '0x' + admin.evm.bytecode.object,
+		//deploy admin
+		const AdmindeployedContract = await new web3.eth.Contract(admin.abi)
+		.deploy({
+			data: '0x' + admin.evm.bytecode.object,
 		
-		// })
-		// .send({
-		// 	from: accounts[0],
-		// 	gas: '2000000'
-		// });
+		})
+		.send({
+			from: accounts[0],
+			gas: '2000000'
+		});
 
 		// //deploy hospitals
 		// const approversdeployedContract = await new web3.eth.Contract(approvers.abi)
@@ -37,7 +37,7 @@ const web3 = new Web3(provider);
 		// })
 		// .send({
 		// 	from: accounts[0],
-		// 	gas: '2000000'
+		// 	gas: '9900000'
 		// });
 
 		
@@ -97,9 +97,9 @@ const web3 = new Web3(provider);
 		// });
 
 
-	// console.log(
-	// 	`Admin Contract deployed at address: ${AdmindeployedContract.options.address}`
-	// );
+	console.log(
+		`Admin Contract deployed at address: ${AdmindeployedContract.options.address}`
+	);
 	// console.log(
 	// 	`Approvers Contract deployed at address: ${approversdeployedContract.options.address}`
 	// );

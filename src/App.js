@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import ContactUs from './components/dashboard/ContactUs';
 import PrivateRoute from './helper/PrivateRoute'
 import UserRegister from './components/user/UserRegister'
+import AdminPanel from './components/admin/AdminPanel';
 
 
 function App(props) {
@@ -27,6 +28,7 @@ function App(props) {
             <PrivateRoute exact path="/home"><Home /></PrivateRoute>
             <PrivateRoute exact path="/"><Home /></PrivateRoute>
             <PublicRoute exact path="/userRegister" component={UserRegister} />
+            <PublicRoute exact path="/adminpanel" component={AdminPanel} />
           </Switch>
           <Footer />
       </div>

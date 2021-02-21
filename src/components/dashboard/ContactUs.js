@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { Col, Container, Form, FormGroup, Input, Jumbotron, Label, Row } from 'reactstrap';
+import { Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import './ContactUs.css'
 import b1 from '../../Images/BackGround/b1.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,12 @@ import { faAddressCard, faEnvelope, faPaperPlane, faPhone } from '@fortawesome/f
 import { Button } from 'reactstrap';
 
 function ContactUs(props) {
-
+    const mapStyles = {
+        width: '90%',
+        height: '55%',
+            
+       
+    };
     return (
         <div className="contactUs">
             <img 
@@ -60,7 +65,7 @@ function ContactUs(props) {
                                         <Input type="textarea" rows="5" cols="5" name="text" id="exampleText" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <Button className="contactUSform__btn" color="#196e1b"><FontAwesomeIcon  size="2x"  icon={faPaperPlane} /></Button>
+                                        <Button className="contactUSform__btn" color="#196e1b"><FontAwesomeIcon  size="1x"  icon={faPaperPlane} /></Button>
                                     </FormGroup>
                                 </Col>
                             </Row>
@@ -99,23 +104,24 @@ function ContactUs(props) {
                     </Col>
                 </Row>
             </Container>
-            <Container>
-                <Map google={this.props.google}
-                    zoom={14}
+            <div className="contactUs__map" fluid>
+                <h2>Locate Us Here</h2>
+                <Map className="contactUs__mapp" google={props.google}
+                    zoom={18}
                     style={mapStyles}
                     initialCenter={
                         {
-                            lat: -1.2884,
-                            lng: 36.8233
+                            lat: 23.259120896856825,
+                            lng: 72.65250702993106
                         }
                     }>
                     <Marker position={{
-                        lat: -1.2884,
-                        lng: 36.8233
+                        lat: 23.259120896856825,
+                        lng: 72.65250702993106
                     }} />
                 </Map>
-
-            </Container>
+                
+            </div>
         </div>
     )
 }

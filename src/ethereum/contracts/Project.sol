@@ -21,6 +21,7 @@ contract Admins {
     function addAdmin(address add) public restricted {
         adminsArray.push(add);
         adminsMap[add]= true;
+        adminAt[add] = adminsArray.length;
     }
 
     function isAdmin(address add) public view returns (bool) {
