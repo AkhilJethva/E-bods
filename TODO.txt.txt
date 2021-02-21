@@ -1,0 +1,6 @@
+                Tejas's TODO
+
+1. admin can not add same admin address second  time
+2. transfer money to hospital after finalize  request
+3. create gernral donation function
+ 
