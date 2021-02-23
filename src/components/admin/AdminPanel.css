@@ -1,0 +1,59 @@
+.adminPanel{
+    background-color: hsl(67, 10%, 84%);
+}
+.adminPanel__header{
+    background-color:mediumpurple;
+    padding:15px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.adminPanel__marquee{
+    background-color: maroon;
+    color: white;
+    max-width: auto;
+}
+.adminPanel__formConainer{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+.formConainer__col{
+    padding: 20px;
+}
+.formConainer__form{
+    display: flex;
+}
+.formConainer__formgroup{
+    display: flex;
+    flex: 1;
+}
+.formConainer__btn{
+    width: auto;
+    height: 40px;
+    align-items: center;
+}
+.formConainer__label{
+    width: 80px;
+}
+.adminPanel__adminlist{
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    background-color: lightsalmon;
+    width: 50%;
+    padding: 5px;
+}
+@media (max-width: 767px){
+    .formConainer__label{
+        width: 95px;
+    }
+    .adminPanel__adminlist{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+}

@@ -63,7 +63,7 @@ contract Approvers {
     mapping(address => uint) public approverAt;
     Admins adminContractAddress;
     
-    constructor(Admins adminContract) public restricted {
+    constructor(Admins adminContract) public {
         adminContractAddress = adminContract;
     }
     		
@@ -165,15 +165,6 @@ contract Hospitals{
 }
 
 
-
-
-
-
-
-
-
-
-
 contract DonationSystem{
     address[] public delpoyedUsers;
     mapping(string => address) getUserContract;
@@ -217,7 +208,7 @@ contract Hospital{
     mapping(address=>bool) public requestStatus;
     
     
-    constructor(address accAddress , string memory name, string memory email, string memory location, uint ph) public {
+    constructor(address accAddress, string memory name, string memory email, string memory location, uint ph) public {
         accountAddress = accAddress;
         hospitalName = name;
         hospitalPhone = ph;
@@ -244,10 +235,6 @@ contract Hospital{
     
     
 }
-
-
-
-
 
 
 

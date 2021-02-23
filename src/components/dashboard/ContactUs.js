@@ -100,7 +100,14 @@ function ContactUs(props) {
                             </div>
                             </Col>
                         </Row>
-                        <Row></Row>
+                        <Row>
+                            <Col>
+                            <img className="contactUs__icon" alt="" src="https://img.icons8.com/clouds/100/000000/twitter.png"/>
+                            <img className="contactUs__icon" alt="" src="https://img.icons8.com/clouds/100/000000/facebook-new.png"/>
+                            <img className="contactUs__icon" alt="" src="https://img.icons8.com/clouds/100/000000/instagram-new--v2.png"/>
+
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

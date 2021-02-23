@@ -46,12 +46,9 @@ function Home() {
             <div>
                 sdfgusdjb
 
-
-
-
-
-
-
+                {/* <div>
+                  <a href="https://firebasestorage.googleapis.com/v0/b/login-4a0ac.appspot.com/o/documents%2FB276F18AdmitCard.pdf?alt=media&token=be882aa0-7a0c-4ef6-b92e-d80093966b0b">helli</a>
+                  </div> */}
                 dfd
                 for(let sdf
                 dsf

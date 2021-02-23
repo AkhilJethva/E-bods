@@ -69,7 +69,11 @@ function Footer() {
                                 </FormGroup>
                                 <Button className="form__btn" color="primary"><FontAwesomeIcon icon={faPaperPlane} /></Button>
                             </Form>
-                        
+                            <div>
+                                <img className="footer__icon" alt="" src="https://img.icons8.com/bubbles/50/000000/twitter.png"/>
+                                <img className="footer__icon" alt="" src="https://img.icons8.com/bubbles/50/000000/facebook-new.png"/>
+                                <img className="footer__icon" alt="" src="https://img.icons8.com/bubbles/50/000000/instagram-new.png"/>
+                            </div>
                     </Col>
                 </Row>
             </Container>
