@@ -249,7 +249,6 @@ contract User{
     uint private phone;
     bool isActive;
     
-
     mapping(address => bool) public isRequestActive;
     
     address[] public activeRequets;
@@ -279,7 +278,7 @@ contract User{
     //     address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , userName, userEmail, aadh, ph, donation, HAddress));
     //     requestsArray.push(newRequest);
     //     isRequestActive[newRequest] = false;
-       
+
     // }
     function createRequest(address HAddress , uint donation) public returns (address){
         require(msg.sender == userAddress);
@@ -287,7 +286,6 @@ contract User{
         requestsArray.push(newRequest);
         isRequestActive[newRequest] = false;
         return newRequest;
-       
     }
     
     function getRequests() public view  returns(address[] memory){

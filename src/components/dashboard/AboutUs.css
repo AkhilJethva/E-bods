@@ -1,0 +1,78 @@
+.aboutUs{
+    background-color: hsl(67, 10%, 84%);
+}
+.aboutUs__info{
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.aboutUs__infobtn{
+    align-items: center;
+    text-align: center;
+    margin-left: 45%;
+}
+.info__card{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    margin-left: 15%;
+}
+.info__img{
+    width: 40%;
+}
+.aboutUs__workflow{
+    align-items: center;
+    padding: 10px;
+    background-image: url("https://image.freepik.com/free-photo/abstract-techno-background-with-connecting-lines_1048-5570.jpg");
+    /* background-repeat: no-repeat; */
+    width: 60%;
+    margin:auto;
+    margin-bottom: 30px;
+    border-radius: 7px;
+}
+.workflow__header{
+    width: auto;
+    background-color: white;
+}
+.workflow__header > h3{
+    text-align: center;
+    
+}
+.chatbox{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+.toast__right{
+    margin-right: 30px;
+}
+.toast__left{
+    margin-left: 30px;
+}
+.toast___body{
+    font-size: large;
+}
+@media (max-width: 767px){
+    .aboutUs__infobtn{
+        margin-left: 30%;
+    }
+    .info__card{
+        width: 100%;
+        margin: auto;
+        flex-direction: column;
+    }
+    .info__img{
+        width: auto;
+    }
+    .aboutUs__workflow{
+        width: auto;
+    }
+    .chatbox{
+        margin: auto;
+    }
+}
+

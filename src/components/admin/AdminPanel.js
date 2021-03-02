@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Form, FormGroup, Input,Button,Col, Spinner, Label, Row, Jumbotron, Alert } from 'reactstrap';
+import { Container, Form, FormGroup, Input,Button,Col, Spinner, Label, Row,  Alert } from 'reactstrap';
 import admin from '../../ethereum/admin';
 import approver from '../../ethereum/approvers';
 import web3 from '../../ethereum/web3'
@@ -75,7 +75,7 @@ class Adminpanel extends Component {
             <div className="adminPanel">
                 <marquee scrollamount="10"  className="adminPanel__marquee"><h5>🙏🙏Operations On Ethereum block-chain take 15-30 seconds to complete. Please have some patience🙏🙏</h5></marquee>
                 <div className="adminPanel__header"><hr></hr>
-                    <h2>Welcome to Admin Panel </h2><img src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png"/>
+                    <h2>Welcome to Admin Panel </h2><img alt="" src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png"/>
                 <hr></hr></div>
                 <Container className="adminPanel__formConainer">
                     <Row><Col className="formConainer__col">

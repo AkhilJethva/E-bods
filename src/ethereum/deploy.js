@@ -29,16 +29,16 @@ const web3 = new Web3(provider);
 		// 	gas: '2000000'
 		// });
 
-		// //deploy approvers
-		// const approversdeployedContract = await new web3.eth.Contract(approvers.abi)
-		// .deploy({
-		// 	data: '0x' + approvers.evm.bytecode.object,
-		// 	arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F']
-		// })
-		// .send({
-		// 	gas: '2000000',
-		// 	from: accounts[0]
-		// });
+		//deploy approvers
+		const approversdeployedContract = await new web3.eth.Contract(approvers.abi)
+		.deploy({
+			data: '0x' + approvers.evm.bytecode.object,
+			arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F']
+		})
+		.send({
+			gas: '2000000',
+			from: accounts[0]
+		});
 
 		
 		// deploy donation system
