@@ -12,7 +12,7 @@ function NavbarLayout(props) {
     const {auth} =  props;
 
 
-
+    
     return (
         <div className="navbar fluid">
             <Navbar dark  expand="md">

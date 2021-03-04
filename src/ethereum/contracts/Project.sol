@@ -180,10 +180,11 @@ contract DonationSystem{
         hospitalsContractAddress = hospitalsContract;
     }
     
-    function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public {
+    function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public returns(address) {
         address newUserContract = address (new User(msg.sender , adminContractAddress , approversContractAddress , hospitalsContractAddress , userName , userEmail, aadh , ph));
         delpoyedUsers.push(newUserContract);
         // getUserContract[email] = newUserContract;
+        return address(newUserContract);
         
     }
     
@@ -303,7 +304,7 @@ contract User{
     function updateStatusDeactive(address add) public {
         isRequestActive[add] = false;
         
-         require(activeRequets.length != 0);
+        require(activeRequets.length != 0);
         
         uint index = activeRequestAt[add];
         uint AI = index-1;
@@ -403,7 +404,7 @@ contract Request{
         getDonationAmount[msg.sender]= msg.value;
         donersName[msg.sender] = name;
     }
-     
+
     function getDoners() public view   returns(address[] memory){
         return doners;
     }
