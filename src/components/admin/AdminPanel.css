@@ -8,6 +8,16 @@
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: space-between !important;
+}
+.adminPanel__headerTitle{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin-left: 30%;
+}
+.adminPanel__headerbtn{
+    margin-left:28%;
 }
 
 .adminPanel__marquee{
@@ -74,6 +84,16 @@
     }
     .adminPanel__listGroup{
         flex-direction: column;
+    }
+    .adminPanel__headerTitle{
+        margin-left: auto;
+    }
+    .adminPanel__header{
+        flex-direction: column;
+    }
+    .adminPanel__headerbtn{
+        margin-top: 7px;
+        margin-left: auto;
     }
 }
 @media (max-width: 1024px){

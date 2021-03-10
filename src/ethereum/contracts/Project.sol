@@ -180,13 +180,11 @@ contract DonationSystem{
         hospitalsContractAddress = hospitalsContract;
     }
     
-    function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public returns(address) {
+    function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public {
         require(getUserContract[userEmail] == address(0));
         address newUserContract = address (new User(msg.sender , adminContractAddress , approversContractAddress , hospitalsContractAddress , userName , userEmail, aadh , ph));
         delpoyedUsers.push(newUserContract);
         getUserContract[userEmail] = newUserContract;
-        return address(newUserContract);
-        
     }
     
     function getDeployedUsers() public view  returns(address[] memory){
@@ -340,7 +338,6 @@ contract User{
 }
 
 contract Request{
-     
     // Date and time for register , approve and complete    // keep this comment
     
     address public userAccountAddress;

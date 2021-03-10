@@ -5,6 +5,7 @@ import approver from '../../ethereum/approvers';
 import web3 from '../../ethereum/web3'
 import './AdminPanel.css'
 import ListComponent from './ListComponent'
+import { Link} from 'react-router-dom'
 
 
 class Adminpanel extends Component {
@@ -75,7 +76,11 @@ class Adminpanel extends Component {
             <div className="adminPanel">
                 <marquee scrollamount="10"  className="adminPanel__marquee"><h5>🙏🙏Operations On Ethereum block-chain take 15-30 seconds to complete. Please have some patience🙏🙏</h5></marquee>
                 <div className="adminPanel__header"><hr></hr>
-                    <h2>Welcome to Admin Panel </h2><img alt="" src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png"/>
+                    <div className="adminPanel__headerTitle">
+                        <h2>Welcome to Admin Panel </h2>
+                        <img alt="" src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png"/>
+                    </div>
+                    <Link to="/admin/hospitalhome"><Button className="adminPanel__headerbtn" color="danger">Hospital Section</Button></Link>
                 <hr></hr></div>
                 <Container className="adminPanel__formConainer">
                     <Row><Col className="formConainer__col">

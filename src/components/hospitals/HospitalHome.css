@@ -1,0 +1,25 @@
+.hospitalHome__header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 7px;
+    background-color: lightblue;
+}
+.hopitalHome__formConainer{
+    padding: 10px;
+    background-color: lightgreen;
+}
+.formtoggle__btn{
+    margin-left: 40%;
+    margin-bottom: 10px;
+}
+.hospitalHome__hlist{
+    margin-top: 20px;
+    background-color: lightslategray;
+    padding: 10px;
+}
+.hospitalHome__hlist > h3{
+    text-align: center;
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+}
