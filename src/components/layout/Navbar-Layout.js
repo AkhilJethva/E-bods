@@ -12,7 +12,7 @@ function NavbarLayout(props) {
     const {auth} =  props;
 
 
-
+    
     return (
         <div className="navbar fluid">
             <Navbar dark  expand="md">
@@ -21,7 +21,7 @@ function NavbarLayout(props) {
                 <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink href="/components/">About Us</NavLink>
+                        <NavLink href="/aboutus">About Us</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href="/contactus">Contact Us</NavLink>

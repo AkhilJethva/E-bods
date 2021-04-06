@@ -17,6 +17,9 @@
 .userRegister__btn{
     background-color: rgb(41, 90, 196) ;
 }
+.userRegister__bottomLine{
+    margin: auto;
+}
 
 
 @media only screen and (max-width: 600px) {

@@ -63,7 +63,7 @@ contract Approvers {
     mapping(address => uint) public approverAt;
     Admins adminContractAddress;
     
-    constructor(Admins adminContract) public restricted {
+    constructor(Admins adminContract) public {
         adminContractAddress = adminContract;
     }
     		
@@ -165,15 +165,6 @@ contract Hospitals{
 }
 
 
-
-
-
-
-
-
-
-
-
 contract DonationSystem{
     address[] public delpoyedUsers;
     mapping(string => address) getUserContract;
@@ -190,14 +181,18 @@ contract DonationSystem{
     }
     
     function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public {
+        require(getUserContract[userEmail] == address(0));
         address newUserContract = address (new User(msg.sender , adminContractAddress , approversContractAddress , hospitalsContractAddress , userName , userEmail, aadh , ph));
         delpoyedUsers.push(newUserContract);
-        // getUserContract[email] = newUserContract;
-        
+        getUserContract[userEmail] = newUserContract;
     }
     
     function getDeployedUsers() public view  returns(address[] memory){
         return delpoyedUsers;
+    }
+
+    function getUserContractAddress(string memory email) public view returns (address) {
+        return  getUserContract[email];
     }
     
 }
@@ -217,7 +212,7 @@ contract Hospital{
     mapping(address=>bool) public requestStatus;
     
     
-    constructor(address accAddress , string memory name, string memory email, string memory location, uint ph) public {
+    constructor(address accAddress, string memory name, string memory email, string memory location, uint ph) public {
         accountAddress = accAddress;
         hospitalName = name;
         hospitalPhone = ph;
@@ -247,10 +242,6 @@ contract Hospital{
 
 
 
-
-
-
-
 contract User{
     address public userAddress;
     address[] public requestsArray;
@@ -262,7 +253,6 @@ contract User{
     uint private phone;
     bool isActive;
     
-
     mapping(address => bool) public isRequestActive;
     
     address[] public activeRequets;
@@ -292,7 +282,7 @@ contract User{
     //     address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , userName, userEmail, aadh, ph, donation, HAddress));
     //     requestsArray.push(newRequest);
     //     isRequestActive[newRequest] = false;
-       
+
     // }
     function createRequest(address HAddress , uint donation) public returns (address){
         require(msg.sender == userAddress);
@@ -300,7 +290,6 @@ contract User{
         requestsArray.push(newRequest);
         isRequestActive[newRequest] = false;
         return newRequest;
-       
     }
     
     function getRequests() public view  returns(address[] memory){
@@ -318,7 +307,7 @@ contract User{
     function updateStatusDeactive(address add) public {
         isRequestActive[add] = false;
         
-         require(activeRequets.length != 0);
+        require(activeRequets.length != 0);
         
         uint index = activeRequestAt[add];
         uint AI = index-1;
@@ -349,7 +338,6 @@ contract User{
 }
 
 contract Request{
-     
     // Date and time for register , approve and complete    // keep this comment
     
     address public userAccountAddress;
@@ -418,7 +406,7 @@ contract Request{
         getDonationAmount[msg.sender]= msg.value;
         donersName[msg.sender] = name;
     }
-     
+
     function getDoners() public view   returns(address[] memory){
         return doners;
     }
