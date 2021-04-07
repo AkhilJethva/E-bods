@@ -56,7 +56,6 @@ function SignUp(props) {
                         <Label for="examplePassword">Password</Label>
                         <Input type="password" name="password" id="examplePassword"
                             placeholder="password must contain 8 characters" 
-                           
                             value={password}
                             onChange={e => setpassword(e.target.value)}
                             />
@@ -73,14 +72,14 @@ function SignUp(props) {
 
 const mapStateToProps = (state) => {
     return{
-      authError : state.auth.authError,
-      auth : state.firebase.auth
+        authError : state.auth.authError,
+        auth : state.firebase.auth
     }
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
+}
+
+const mapDispatchToProps = (dispatch) => {
     return{
-      signUp: (newUser) => dispatch(signUp(newUser))
+        signUp: (newUser) => dispatch(signUp(newUser))
     }
-  }
+}
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp)

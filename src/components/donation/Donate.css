@@ -1,0 +1,29 @@
+.donate__imgGrid{
+
+}
+.donate__backgrid{
+    background-color: slategray;
+    margin: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    width: 80%;
+    margin-bottom: 10px;
+    
+}
+.donate__backgrid > h3{
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Courier New', monospace;
+    font-weight: 800;
+}
+.grid__marginleft{
+    margin-left: 25%;
+}
+
+
+@media (max-width: 767px){
+    .donate__backgrid{
+        width: 100%;
+    }
+}

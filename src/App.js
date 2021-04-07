@@ -11,6 +11,11 @@ import ContactUs from './components/dashboard/ContactUs';
 import PrivateRoute from './helper/PrivateRoute'
 import UserRegister from './components/user/UserRegister'
 import AdminPanel from './components/admin/AdminPanel';
+import AboutUs from './components/dashboard/AboutUs';
+import UserHome from './components/user/UserHome';
+import UserLogin from './components/user/UserLogin';
+import HospitalHome from './components/hospitals/HospitalHome';
+import Donate from './components/donation/Donate';
 
 
 function App(props) {
@@ -22,12 +27,17 @@ function App(props) {
           <NavbarLayout />
           <Switch>
             <PublicRoute exact path="/login" component={SignIn} />
+            <PublicRoute exact path="/donate" component={Donate} />
             <PublicRoute exact path="/signup" component={SignUp} />
             {/* <PublicRoute exact path="/home" component={Home} /> */}
             <PublicRoute exact path="/contactus" component={ContactUs} />
+            <PublicRoute exact path="/aboutus" component={AboutUs} />
             <PrivateRoute exact path="/home"><Home /></PrivateRoute>
             <PrivateRoute exact path="/"><Home /></PrivateRoute>
             <PublicRoute exact path="/userRegister" component={UserRegister} />
+            <PublicRoute exact path="/userhome/:id" component={UserHome}/>
+            <PublicRoute exact path="/userlogin" component={UserLogin}/>
+            <PublicRoute exact path="/admin/hospitalhome" component={HospitalHome}/>
             <PublicRoute exact path="/adminpanel" component={AdminPanel} />
           </Switch>
           <Footer />

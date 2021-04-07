@@ -13,10 +13,10 @@ function SignInLinks(props) {
     return (
         <Nav navbar>
             <NavItem>
-                <NavLink href="/components/">Donate</NavLink>
+                <NavLink href="/donate">Donate</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href="/userRegister">Create Campaign</NavLink>
+                <NavLink href="/userlogin">User Section</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink  onClick={logout}>Log Out</NavLink>

@@ -1,0 +1,115 @@
+.adminPanel{
+    background-color: hsl(67, 10%, 84%);
+}
+.adminPanel__header{
+    background-color:mediumpurple;
+    padding:15px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+}
+.adminPanel__headerTitle{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    margin-left: 30%;
+}
+.adminPanel__headerbtn{
+    margin-left:28%;
+}
+
+.adminPanel__marquee{
+    background-color: maroon;
+    color: white;
+    max-width: auto;
+}
+.adminPanel__formConainer{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+.formConainer__col{
+    padding: 20px;
+}
+.formConainer__form{
+    display: flex;
+}
+.formConainer__formgroup{
+    display: flex;
+    flex: 1;
+}
+.formConainer__btn{
+    width: auto;
+    height: 40px;
+    align-items: center;
+}
+.formConainer__label{
+    width: 80px;
+}
+.adminPanel__adminlist{
+    margin: 30px;
+    
+    background-color: lightsalmon;
+    width: 50%;
+    padding: 5px;
+}
+.adminPanel__approverslist{
+    margin: 30px;
+    
+    background-color: lightsalmon;
+    width: 50%;
+    padding: 5px;
+}
+.adminPanel__listGroup{
+    display: flex;
+    flex-direction: row;
+}
+@media (max-width: 767px){
+    .formConainer__label{
+        width: 95px;
+    }
+    .adminPanel__adminlist{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+    .adminPanel__approverslist{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+    .adminPanel__listGroup{
+        flex-direction: column;
+    }
+    .adminPanel__headerTitle{
+        margin-left: auto;
+    }
+    .adminPanel__header{
+        flex-direction: column;
+    }
+    .adminPanel__headerbtn{
+        margin-top: 7px;
+        margin-left: auto;
+    }
+}
+@media (max-width: 1024px){
+    .adminPanel__listGroup{
+        flex-direction: column;
+    }
+    .adminPanel__adminlist{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+    .adminPanel__approverslist{
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+}

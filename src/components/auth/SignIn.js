@@ -49,7 +49,6 @@ function SignIn(props) {
               <Label for="examplePassword">Password</Label>
               <Input type="password" name="password" id="examplePassword"
                 placeholder="password must contain 8 characters" 
-               
                 value={password}
                 onChange={e => setpassword(e.target.value)}
                 />

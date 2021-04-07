@@ -63,7 +63,7 @@ contract Approvers {
     mapping(address => uint) public approverAt;
     Admins adminContractAddress;
     
-    constructor(Admins adminContract) public restricted {
+    constructor(Admins adminContract) public {
         adminContractAddress = adminContract;
     }
     		
@@ -115,9 +115,11 @@ contract Hospitals{
     address[]  public  deployedHospitals;
     mapping(address => uint) hospitalAt;
     Admins adminContractAddress;
+    Approvers approversContractAddress;
     
-    constructor(Admins adminContract) public {
+    constructor(Admins adminContract, Approvers approversContract) public {
         adminContractAddress = adminContract;
+        approversContractAddress = approversContract;
     }
     
     // function createHospitalContract(address accountAddress) public  restricted {
@@ -126,7 +128,7 @@ contract Hospitals{
     //     hospitalAt[newHospitalContract] = deployedHospitals.length;
     // }
     function createHospitalContract(address accountAddress, string memory name, string memory email, string memory location, uint ph) public  restricted returns (address ) {
-        address newHospitalContract = address(new Hospital(accountAddress , name , email , location , ph ));
+        address newHospitalContract = address( new Hospital(adminContractAddress, approversContractAddress,accountAddress , name , email , location , ph ));
         deployedHospitals.push(newHospitalContract);
         hospitalAt[newHospitalContract] = deployedHospitals.length;
         return newHospitalContract;
@@ -165,15 +167,6 @@ contract Hospitals{
 }
 
 
-
-
-
-
-
-
-
-
-
 contract DonationSystem{
     address[] public delpoyedUsers;
     mapping(string => address) getUserContract;
@@ -190,14 +183,18 @@ contract DonationSystem{
     }
     
     function createUserContact(string memory userName , string memory userEmail , uint aadh , uint ph) public {
+        require(getUserContract[userEmail] == address(0));
         address newUserContract = address (new User(msg.sender , adminContractAddress , approversContractAddress , hospitalsContractAddress , userName , userEmail, aadh , ph));
         delpoyedUsers.push(newUserContract);
-        // getUserContract[email] = newUserContract;
-        
+        getUserContract[userEmail] = newUserContract;
     }
     
     function getDeployedUsers() public view  returns(address[] memory){
         return delpoyedUsers;
+    }
+
+    function getUserContractAddress(string memory email) public view returns (address) {
+        return  getUserContract[email];
     }
     
 }
@@ -205,32 +202,40 @@ contract DonationSystem{
 
 contract Hospital{
     
-    address accountAddress;
+    address public ownerAddress;
     
     string public hospitalName;
     string public hospitalLocation;
     string public hospitalEmail;
     uint public hospitalPhone;
+    bool public  testing = false;
     
     
     address[] public requestsArray;
     mapping(address=>bool) public requestStatus;
     
+    Admins adminContractAddress;
+    Approvers approversContractAddress;
     
-    constructor(address accAddress , string memory name, string memory email, string memory location, uint ph) public {
-        accountAddress = accAddress;
+    
+    constructor(Admins adminContract, Approvers approversContract, address accAddress, string memory name, string memory email, string memory location, uint ph) public {
+        ownerAddress = accAddress;
         hospitalName = name;
         hospitalPhone = ph;
         hospitalEmail = email;
         hospitalLocation = location;
+        adminContractAddress = adminContract;
+        approversContractAddress = approversContract;
     }
     
     
-    function addRequest(address requestAddress) public {
+    function addRequest(address requestAddress) public   {
         requestStatus[requestAddress] = false;
+        requestsArray.push(requestAddress);
+        testing = true;
     }
     
-    function changeStatustoTrue(address requestAddress) public {
+    function changeStatustoTrue(address requestAddress)  public   {
         requestStatus[requestAddress] = true;
     }
     
@@ -242,12 +247,25 @@ contract Hospital{
         return  requestStatus[add];
     }
     
+    function getCurrentBalance() public view returns (uint) {
+        return  address(this).balance;
+    }
+    
+    function transferBalanceToOwner() public restricted  {
+        
+        payable(ownerAddress).transfer(address(this).balance);
+        
+    }
+    
+    fallback() external payable  { }
+    
+    modifier restricted(){
+        require(adminContractAddress.isAdmin(msg.sender) || approversContractAddress.isApprover(msg.sender)  || msg.sender == ownerAddress );
+        _;
+    }
+    
     
 }
-
-
-
-
 
 
 
@@ -262,7 +280,6 @@ contract User{
     uint private phone;
     bool isActive;
     
-
     mapping(address => bool) public isRequestActive;
     
     address[] public activeRequets;
@@ -292,15 +309,14 @@ contract User{
     //     address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , userName, userEmail, aadh, ph, donation, HAddress));
     //     requestsArray.push(newRequest);
     //     isRequestActive[newRequest] = false;
-       
+
     // }
-    function createRequest(address HAddress , uint donation) public returns (address){
+    function createRequest(/*Hospital  HAddress ,*/  address hOwner, uint donation , string memory title , string memory timestamp) public returns (address){
         require(msg.sender == userAddress);
-        address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , name , email , aadhaar, phone , donation, HAddress));
+        address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , title ,name , email , aadhaar, phone , donation, /*HAddress*/  hOwner));
         requestsArray.push(newRequest);
         isRequestActive[newRequest] = false;
         return newRequest;
-       
     }
     
     function getRequests() public view  returns(address[] memory){
@@ -318,7 +334,7 @@ contract User{
     function updateStatusDeactive(address add) public {
         isRequestActive[add] = false;
         
-         require(activeRequets.length != 0);
+        require(activeRequets.length != 0);
         
         uint index = activeRequestAt[add];
         uint AI = index-1;
@@ -349,17 +365,22 @@ contract User{
 }
 
 contract Request{
-     
     // Date and time for register , approve and complete    // keep this comment
     
     address public userAccountAddress;
-    address public hospitalAddress;
+    Hospital public hospitalAddress;
+    address public hospitalOwnerAddress;
     address public approvedBy;
     address public completedBy;
     address[] public doners;
+    struct donerInfo{
+        string name;
+        uint donatedAmount;
+    }
     
-    mapping(address => string) public donersName;
-    mapping(address => uint) public getDonationAmount;
+    // mapping(address => string) public donersName;
+    // mapping(address => uint) public getDonationAmount;
+    mapping(address => donerInfo) public donerInformation;
     
     string public name;
     string public email;
@@ -367,61 +388,108 @@ contract Request{
     uint private aadhaar;
     uint private phone;
     uint public donationValue;
+    string public title;
+    string public discription;
+    string public timestamp;
     
     bool public isApproved;
-    bool public isComplete;
+    //bool public isComplete;
     bool public isActive;
     
     Admins adminContractAddress;
     Approvers approversContractAddress;
     User userContractAddress;
     
-    constructor(address userAdd,  Admins adminContract, Approvers approversContract, User userContract, string memory userName, string memory mail, uint aadh, uint ph, uint donation, address HAddress) public{
+    constructor(
+        address userAdd,
+        Admins adminContract,
+        Approvers approversContract,
+        User userContract,
+        string memory title,  
+
+        string memory userName,
+        string memory mail,
+        uint aadh,
+        uint ph,
+        uint donation,
+        // Hospital  HAddress
+        address hOwner
+        ) public{
         adminContractAddress = adminContract;
         approversContractAddress = approversContract;
         userContractAddress = userContract;
         userAccountAddress = userAdd;
+        hospitalOwnerAddress = hOwner;
         
         name = userName;
         email = mail;
         aadhaar = aadh;
         phone = ph;
         donationValue = donation;
-        hospitalAddress = HAddress;
+        // hospitalAddress = HAddress;
+        
+        //----------------------------------------------------------------------------------------------------------------------------
+        isApproved =false;
+        isActive = false;
+        //isComplete = false;
     }
     
     
     function approveRequest() public restricted {
-        
         userContractAddress.updateStatusActive(address(this));
+        // hospitalAddress.addRequest(address(this));
         approvedBy = msg.sender;
         isApproved = true;
         isActive = true;
         
     }
     
-    function completeRequest() public restricted {
+    function completeRequest() public restricted payable {
+        
         userContractAddress.updateStatusDeactive(address(this));
+        // hospitalAddress.changeStatustoTrue(address(this));
+        payable(address(hospitalOwnerAddress)).transfer(address(this).balance);
         completedBy = msg.sender;
-        isComplete = true;
         isActive = false;
+        
+        
+        
+        //isComplete = true;
+        // address payable  t = address(hospitalAddress);
+        // address(hospitalAddress).send(20);
     }
     
     
     function donate(string memory name) public payable{
         
         // this.balance    keep this comment 
-        
+    
         require(msg.value > 0.00002 ether); // we need to discuss about this
-        
         doners.push(msg.sender);
-        getDonationAmount[msg.sender]= msg.value;
-        donersName[msg.sender] = name;
+        donerInfo memory info;
+        info.name = name;
+        info.donatedAmount = msg.value;
+        donerInformation[msg.sender] = info;
+        
+        
+        // getDonationAmount[msg.sender]= msg.value;
+        // donersName[msg.sender] = name;
     }
-     
+
     function getDoners() public view   returns(address[] memory){
         return doners;
     }
+    
+    function getDonerInfo(address donerAddress) public view   returns(string memory , uint){
+        donerInfo memory info = donerInformation[donerAddress];
+        return ( info.name, info.donatedAmount);
+    }
+    
+    function getCurrentBalance() public view returns (uint) {
+        return  address(this).balance;
+    }
+    
+    
     
     
     modifier restricted(){

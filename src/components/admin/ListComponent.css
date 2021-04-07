@@ -1,0 +1,19 @@
+.listComponent{
+    margin: 5px;
+}
+.listComponent__card{
+    display: flex;
+    flex-direction: row;
+}
+.card__btn{
+    margin-left: auto;
+}
+@media (max-width: 767px){
+    .card__title{
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .card__btn{
+        height: 40px;
+    }
+}

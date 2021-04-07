@@ -52,7 +52,6 @@
     background-color:#6f42c1;
     color: white;
     /* background-color:  rgb(17, 110, 30); */
-  
 }
 .contactuUs__formItem{
     margin-top: 20px;
@@ -79,7 +78,13 @@
 }
 .contactUs__mapp{
     margin-left: 20px;
-   
+}
+.contactUs__icon{
+    width: 80px;
+    height: auto;
+}
+.contactUs__icon:hover {
+    transform: scale(1.2);
 }
 @media (max-width: 767px) {
     .contactUs__map{
