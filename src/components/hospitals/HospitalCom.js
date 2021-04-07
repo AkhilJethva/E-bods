@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Button, Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col } from 'reactstrap';
 import './HospitalCom.css'
 import Hospital from '../../ethereum/hospital';
+import hospitals from '../../ethereum/hospitals';
 import web3 from '../../ethereum/web3'
 
 
@@ -29,8 +30,6 @@ function HospitalCom(props) {
 
             const phone = await hospital.methods.hospitalPhone().call({ from : accounts[0]});
             setHnumber(phone)
-
-
         }
         catch(e){
             console.log(e)
@@ -40,6 +39,22 @@ function HospitalCom(props) {
         }
     }, [])
 
+    const handleRemove = async(e) => {
+        e.preventDefault();
+        
+        await window.ethereum.enable()
+        try{
+            
+            const accounts = await web3.eth.getAccounts();
+            
+            await hospitals.methods.removeHospital(Haddress).send({ from : accounts[0]});
+            
+            
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
 
     return (
         <Col className="hospitalComp" sm={5}>
@@ -50,7 +65,7 @@ function HospitalCom(props) {
                     <CardTitle>{Hmail}</CardTitle>
                     <CardText>{Hlocation}, Contact No:: {Hnumber}</CardText>
                     </div>
-                    <Button className="hospitaCard__btn" color="danger">Remove</Button>
+                    <Button className="hospitaCard__btn" color="danger" onClick={handleRemove}>Remove</Button>
                 </CardBody>
                 <CardFooter>{Haddress}</CardFooter>
             </Card>

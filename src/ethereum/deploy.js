@@ -45,7 +45,7 @@ const web3 = new Web3(provider);
 		const DonationSystemdeployedContract = await new web3.eth.Contract(donationSystem.abi)
 		.deploy({
 			data: '0x' + donationSystem.evm.bytecode.object,
-			arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F','0x1B1386Fb5dD168eBf22D7CAF38D9254E35064Df0','0x510F3e5D91F8CD29af16817E755A25e10f877E93']
+			arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F','0x1B1386Fb5dD168eBf22D7CAF38D9254E35064Df0','0x6057020B83cAF4F7c369c252598B9FdFaA87D6A9']
 		
 		})
 		.send({
@@ -68,7 +68,7 @@ const web3 = new Web3(provider);
 		// const HospitalsdeployedContract = await new web3.eth.Contract(hospitals.abi)
 		// .deploy({
 		// 	data: '0x' + hospitals.evm.bytecode.object,
-		// 	arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F']
+		// 	arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F','0x1B1386Fb5dD168eBf22D7CAF38D9254E35064Df0']
 		// })
 		// .send({
 		// 	from: accounts[0],

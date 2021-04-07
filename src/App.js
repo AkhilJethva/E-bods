@@ -15,6 +15,7 @@ import AboutUs from './components/dashboard/AboutUs';
 import UserHome from './components/user/UserHome';
 import UserLogin from './components/user/UserLogin';
 import HospitalHome from './components/hospitals/HospitalHome';
+import Donate from './components/donation/Donate';
 
 
 function App(props) {
@@ -26,6 +27,7 @@ function App(props) {
           <NavbarLayout />
           <Switch>
             <PublicRoute exact path="/login" component={SignIn} />
+            <PublicRoute exact path="/donate" component={Donate} />
             <PublicRoute exact path="/signup" component={SignUp} />
             {/* <PublicRoute exact path="/home" component={Home} /> */}
             <PublicRoute exact path="/contactus" component={ContactUs} />

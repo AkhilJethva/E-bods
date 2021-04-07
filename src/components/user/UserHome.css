@@ -1,13 +1,89 @@
+.userHome__parent{
+    display: flex;
+    flex-direction: row;
+}
+.userHome__dialog{
+    margin: auto
+}
+.userHome{  
+    width: 100%;
+}
 .upper__header{
     display: flex;
     justify-content: space-between;
 }
 .upper__btnrgt{
     float: right;
+
+}
+.userHome__list{
+    width: fit-content;
 }
 .userHome__requestlist{
     margin: 30px;
-    background-color: lightsalmon;
+    background-color: rgb(255, 122, 122);
     width: 50%;
     padding: 5px;
+    height: fit-content;
+
+}
+.requestList__overflow{
+    overflow-y: scroll;
+    height: 70vh;
+}
+.card__header{
+    background-color: peru;
+    align-items: center;
+    text-align: center;
+}
+.requestlist__header{
+    background-color:royalblue;
+    align-items: center;
+    text-align: center;
+    
+    float: top;
+}
+.request__form{
+    width: 70%;
+    margin: auto;
+}
+.request__btn{
+    float: right;
+}
+.userHome__bottom{
+    display: flex;
+    width: 100%;
+}
+.userHome__profile{
+    /* background-image: url("../../Images/BackGround/ubg.jpg"); */
+    float: right;
+}
+.profile___card{
+    margin-left: auto;
+    width: 50%;
+    margin-right: auto;
+}
+.profile__cardImg{
+    width: 46vh;
+}
+@media (max-width: 767px){
+    .userHome__bottom{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .userHome{
+        width: 100%;
+    }
+
+    .userHome__requestlist{
+        width: auto;
+    }
+    .profile___card{
+        margin: auto;
+        width: auto;
+    }
+    .profile__cardImg{
+        width: auto;
+    }
 }
