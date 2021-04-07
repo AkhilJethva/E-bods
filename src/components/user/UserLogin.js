@@ -19,7 +19,7 @@ function UserLogin(props) {
         await window.ethereum.enable()
         try{
             if(email != props.auth.email){
-                throw "Please Enter the Same Email That you Registered With"
+                throw "Please Enter the Same Email That you Registered With";
             }
             const accounts = await web3.eth.getAccounts();
             const add = await donationSystem.methods.getUserContractAddress(email).call ({ from : accounts[0]});
@@ -74,12 +74,11 @@ function UserLogin(props) {
                     <h3>Hola! Welcome to E-BODs family.</h3>
                     <h4>Are you new Here? Don't worry we got you back.🤩</h4>
                     <Link to="/userRegister"><Button className="userLogin__rightbtn"  color="success">Click Me</Button></Link> 
-                    
                 </div>
+                
             </div>
     )
 }
-
 
 const mapStateToProps = (state) => {
     return{

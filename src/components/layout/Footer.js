@@ -77,6 +77,11 @@ function Footer() {
                     </Col>
                 </Row>
             </Container>
+            <div className="footer__copyright">
+                <hr></hr>
+                <h6>All rights reserved by E-BODS. Copyright © 2021</h6>
+                <hr></hr>
+            </div>
         </footer>
     )
 }

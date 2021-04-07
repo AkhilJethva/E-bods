@@ -4,7 +4,7 @@ import Hospitals from './build/Hospitals.json'
 
 const hospitalsInstance = new web3.eth.Contract(
     Hospitals.abi,
-    '0x510F3e5D91F8CD29af16817E755A25e10f877E93'
+    '0x6057020B83cAF4F7c369c252598B9FdFaA87D6A9'
 );
 
 
