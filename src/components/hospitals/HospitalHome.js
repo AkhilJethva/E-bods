@@ -5,6 +5,7 @@ import HospitalCom from './HospitalCom'
 import './HospitalHome.css'
 import hospitals from '../../ethereum/hospitals';
 import web3 from '../../ethereum/web3'
+import Firebase from '../../config/fbconfig'
 
 function HospitalHome() {
 
@@ -21,6 +22,17 @@ function HospitalHome() {
         console.log(HacAdrress,Hname,Hmail,Hlocation,Hnumber);
         const accounts = await web3.eth.getAccounts();
         await hospitals.methods.createHospitalContract(HacAdrress,Hname,Hmail,Hlocation,Hnumber).send({ from : accounts[0]});
+
+        Firebase.firestore().collection(`Hospitals`).add({
+            hospitalAddress: HacAdrress,
+            HospitalName: Hname,
+            HospitalEmail : Hmail,
+            HospitalLocation : Hlocation,
+            HospitalContact : Hnumber,
+            Time : new Date(),
+        });
+        console.log("Data Stored")
+    
 
     }
 

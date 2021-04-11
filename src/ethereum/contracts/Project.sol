@@ -1,4 +1,4 @@
-pragma solidity ^0.7.4;
+pragma solidity >=0.7.4;
 
 // to Do
     // 1 -> make Admin,Approvers contract Updatable
@@ -7,7 +7,7 @@ contract Admins {
     address[] public adminsArray;
     mapping(address => bool) public adminsMap;
     mapping(address => uint) public adminAt;
-      
+
 
     constructor() public {
         adminsArray.push(msg.sender);
@@ -66,7 +66,7 @@ contract Approvers {
     constructor(Admins adminContract) public {
         adminContractAddress = adminContract;
     }
-    		
+
     function getAprrovers() public restricted  view returns(address[] memory){
         
         return approversArray;
@@ -114,9 +114,10 @@ contract Hospitals{
     
     address[]  public  deployedHospitals;
     mapping(address => uint) hospitalAt;
+    
     Admins adminContractAddress;
     Approvers approversContractAddress;
-    
+    mapping(address => string) hospitalsName;
     constructor(Admins adminContract, Approvers approversContract) public {
         adminContractAddress = adminContract;
         approversContractAddress = approversContract;
@@ -131,11 +132,17 @@ contract Hospitals{
         address newHospitalContract = address( new Hospital(adminContractAddress, approversContractAddress,accountAddress , name , email , location , ph ));
         deployedHospitals.push(newHospitalContract);
         hospitalAt[newHospitalContract] = deployedHospitals.length;
+        hospitalsName[newHospitalContract] = name;
         return newHospitalContract;
     }
-    function getDeployedHospitals() public  view  returns   (address[] memory){
+    function getDeployedHospitals() public  view  returns (address[] memory){
         return deployedHospitals;
     }
+    
+    function getNameByAddress(address add) public view returns (string memory) {
+        return  hospitalsName[add];
+    }
+    
     
     function removeHospital(address hospitalContarctAddress) public restricted{
         
@@ -143,8 +150,6 @@ contract Hospitals{
         
         uint index = hospitalAt[hospitalContarctAddress];
         uint AI = index-1;
-        
-        
         
         require( index != 0 );
         
@@ -272,7 +277,7 @@ contract Hospital{
 contract User{
     address public userAddress;
     address[] public requestsArray;
-    
+    address public lastAddedRequest;
     
     string public name;
     string public email;
@@ -316,11 +321,20 @@ contract User{
         address newRequest =  address (new Request(msg.sender , adminContractAddress , approversContractAddress , (this) , title ,name , email , aadhaar, phone , donation, /*HAddress*/  hOwner));
         requestsArray.push(newRequest);
         isRequestActive[newRequest] = false;
+        lastAddedRequest = newRequest;
         return newRequest;
     }
     
     function getRequests() public view  returns(address[] memory){
         return requestsArray;
+    }
+
+    function getActiveRequests() public view  returns(address[] memory){
+        return activeRequets;
+    }
+    
+    function getLastAddedRequest() public view  returns(address){
+        return lastAddedRequest;
     }
     
     function updateStatusActive(address add) public{

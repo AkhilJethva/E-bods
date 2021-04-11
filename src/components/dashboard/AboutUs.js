@@ -2,15 +2,24 @@ import React,  { useState } from 'react'
 import './AboutUs.css'
 import { Collapse, Button, CardBody, Card, CardImg, Toast, ToastBody, ToastHeader } from 'reactstrap';
 import i1 from '../../Images/AboutUsImg/i1.jpg'
+import DonateAni from '../../animations/25067-donate.json'
+import Lottie from 'react-lottie';
 
 
 function AboutUs(props) {
 
     const [isOpen, setIsOpen] = useState(true);
-
+    
     const toggle = () => setIsOpen(!isOpen);
 
-
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: DonateAni,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
     return (
         <div className="aboutUs">
             <div className="aboutUs__info">
@@ -19,13 +28,17 @@ function AboutUs(props) {
                     <Card className="info__card">
                     <CardImg className="info__img" width="100%" src={i1} alt="Card image cap" />
                     <CardBody>
-                    Anim pariatur cliche reprehenderit,
-                    enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                    anim keffiyeh helvetica, craft beer labore wes anderson cred
-                    nesciunt sapiente ea proident.
+                        <p><blockquote><i>“Service to others is the rent you pay for your room here on earth.”</i></blockquote> -Mohammed Ali</p>
+                        <p><blockquote><i>“We ourselves feel that what we are doing is just a drop in the ocean. But the ocean would be less because of that missing drop.” </i></blockquote> -Mother Teresa</p>
                     </CardBody>
                     </Card>
                 </Collapse>
+                <div className="aboutUs__anima">
+                <Lottie 
+                    options={defaultOptions}
+                    height={200}
+                    width={200}
+                /></div>
             </div>
             <div className="aboutUs__workflow">
                 
