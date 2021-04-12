@@ -21,6 +21,8 @@
     padding: 10px;
     z-index: 9;
     margin: 20px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 10px;
     background-color: rgb(243, 242, 242);
     border-radius: 7px;
@@ -68,13 +70,16 @@
 }
 .contactUs__map{
     width: 1400px;
-    height: 500px;
+    height: 550px;
     background-color: rgb(198, 164, 243);
     margin-bottom: 20px;
     border-radius: 7px;
 }
 .contactUs__map > h2{
     margin-left: 20px;
+    text-align: center;
+    color:whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
 }
 .contactUs__mapp{
     margin-left: 20px;
