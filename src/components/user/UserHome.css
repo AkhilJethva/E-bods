@@ -21,7 +21,8 @@
 }
 .userHome__requestlist{
     margin: 30px;
-    background-color: rgb(255, 122, 122);
+    background-color: rgb(150, 247, 71);
+    border-radius: 5px;
     width: 50%;
     padding: 5px;
     height: fit-content;

@@ -13,6 +13,7 @@ function HospitalCom(props) {
     
     const [Hlocation, setHlocation] = useState("")
     const [Hnumber, setHnumber] = useState("")
+    const [ownAddress, setownAddress] = useState("")
 
     useEffect( async() => {
         await window.ethereum.enable();
@@ -30,6 +31,9 @@ function HospitalCom(props) {
 
             const phone = await hospital.methods.hospitalPhone().call({ from : accounts[0]});
             setHnumber(phone)
+
+            const ownAdd = await hospital.methods.ownerAddress().call({ from : accounts[0]});
+            setownAddress(ownAdd)
         }
         catch(e){
             console.log(e)
@@ -67,7 +71,7 @@ function HospitalCom(props) {
                     </div>
                     <Button className="hospitaCard__btn" color="danger" onClick={handleRemove}>Remove</Button>
                 </CardBody>
-                <CardFooter>{Haddress}</CardFooter>
+                <CardFooter>{ownAddress}</CardFooter>
             </Card>
         </Col>
     )

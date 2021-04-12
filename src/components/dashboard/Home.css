@@ -1,7 +1,11 @@
 .home__slider{
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
+    height: 50%;
 }
 .display-4{
     color: black
+}
+.home__jumbotron{
+    display: flex;
 }

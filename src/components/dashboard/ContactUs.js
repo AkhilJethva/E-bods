@@ -11,7 +11,7 @@ function ContactUs(props) {
     const mapStyles = {
         width: '90%',
         height: '55%',
-            
+        borderRadius : "10px"
        
     };
     return (
@@ -112,7 +112,7 @@ function ContactUs(props) {
                 </Row>
             </Container>
             <div className="contactUs__map" fluid>
-                <h2>Locate Us Here</h2>
+                <hr></hr><hr></hr><h2>Locate Us Here</h2><hr></hr>
                 <Map className="contactUs__mapp" google={props.google}
                     zoom={18}
                     style={mapStyles}

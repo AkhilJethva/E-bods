@@ -41,11 +41,11 @@ const web3 = new Web3(provider);
 		// });
 
 		
-		// deploy donation system
+		// // deploy donation system
 		const DonationSystemdeployedContract = await new web3.eth.Contract(donationSystem.abi)
 		.deploy({
 			data: '0x' + donationSystem.evm.bytecode.object,
-			arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F','0x1B1386Fb5dD168eBf22D7CAF38D9254E35064Df0','0x6057020B83cAF4F7c369c252598B9FdFaA87D6A9']
+			arguments: ['0x6666E59DFbF51753C42a720E23fde07f9189626F','0x1B1386Fb5dD168eBf22D7CAF38D9254E35064Df0','0x00563D02267ec5Fd760F0C044271EC17f463935c']
 		
 		})
 		.send({
@@ -53,7 +53,7 @@ const web3 = new Web3(provider);
 			gas: '6000000'
 		});
 
-		// //deploy hospital
+		// deploy hospital
 		// const HospitaldeployedContract = await new web3.eth.Contract(hospital.abi)
 		// .deploy({
 		// 	data: '0x' + hospital.evm.bytecode.object,
@@ -64,7 +64,7 @@ const web3 = new Web3(provider);
 		// 	gas: '2000000'
 		// });
 
-		// //deploy hospitals
+		//deploy hospitals
 		// const HospitalsdeployedContract = await new web3.eth.Contract(hospitals.abi)
 		// .deploy({
 		// 	data: '0x' + hospitals.evm.bytecode.object,
@@ -72,7 +72,7 @@ const web3 = new Web3(provider);
 		// })
 		// .send({
 		// 	from: accounts[0],
-		// 	gas: '2000000'
+		// 	gas: '6000000'
 		// });
 
 		// //deploy request

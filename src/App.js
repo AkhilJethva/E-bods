@@ -16,6 +16,7 @@ import UserHome from './components/user/UserHome';
 import UserLogin from './components/user/UserLogin';
 import HospitalHome from './components/hospitals/HospitalHome';
 import Donate from './components/donation/Donate';
+import RequestDetail from './components/donation/RequestDetail';
 
 
 function App(props) {
@@ -36,6 +37,7 @@ function App(props) {
             <PrivateRoute exact path="/"><Home /></PrivateRoute>
             <PublicRoute exact path="/userRegister" component={UserRegister} />
             <PublicRoute exact path="/userhome/:id" component={UserHome}/>
+            <PublicRoute exact path="/donate/:id" component={RequestDetail}/>
             <PublicRoute exact path="/userlogin" component={UserLogin}/>
             <PublicRoute exact path="/admin/hospitalhome" component={HospitalHome}/>
             <PublicRoute exact path="/adminpanel" component={AdminPanel} />

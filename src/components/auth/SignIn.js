@@ -5,13 +5,14 @@ import {connect} from 'react-redux'
 import { signIn } from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom';
 
+import firebase from '../../config/fbconfig'
+
 
 
 function SignIn(props) {
 
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
- 
   
   
   const handleLogin = (event) => {
@@ -29,9 +30,10 @@ function SignIn(props) {
   }
   
   
-  console.log("hello",auth)
+  console.log("hello I am auth",auth.email)
 
   if(auth.uid) return <Redirect  to="/home"/>
+
   return (
     <div className="signin">
       <div className="signin__body">

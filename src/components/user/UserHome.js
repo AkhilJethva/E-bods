@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Alert,Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Form, UncontrolledCollapse,Col,   FormGroup, Label, Input, FormText, CustomInput, CardHeader   } from 'reactstrap'
+import { Alert,Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Form, UncontrolledCollapse,Col,   FormGroup, Label, Input, FormText, CustomInput, CardHeader, Badge   } from 'reactstrap'
 import './UserHome.css'
 import User from '../../ethereum/user'
 import web3 from '../../ethereum/web3'
@@ -8,6 +8,9 @@ import ubg from '../../Images/BackGround/ubg.jpg'
 import hospitals from '../../ethereum/hospitals';
 import { connect } from 'react-redux'
 import Firebase from '../../config/fbconfig';
+import Hospital from '../../ethereum/hospital';
+import Lottie from 'react-lottie';
+import Spin from '../../animations/46472-lurking-cat.json'
 
 
 function UserHome(props) {
@@ -15,8 +18,19 @@ function UserHome(props) {
     const [userAddress, setuserAddress] = useState(props.location.pathname.substr(10))
     const [uname, setuname] = useState("")
     const {auth} = props;
-    const [HospitalList, setHospitalList] = useState(null)
+    const [HospitalList, setHospitalList] = useState([])
     const [USerRequestList, setUSerRequestsList] = useState(null)
+    const [HospitalFirebase, setHospitalFirebase] = useState(null)
+    const [Spinner, setSpinner] = useState(false)
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: Spin,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
 
     useEffect(async() => {
         
@@ -29,9 +43,31 @@ function UserHome(props) {
 
         const requestList= await user.methods.getRequests().call({from: accounts[0]});
         setUSerRequestsList(requestList)
-
+        console.log(await hospitals.methods)
         const hospitalsList = await hospitals.methods.getDeployedHospitals().call({ from : accounts[0]});
-        setHospitalList(hospitalsList);
+
+        let hospitalColl = [];
+
+        hospitalsList.map(async(hospitalAdd) => {
+            const hospital = Hospital(hospitalAdd);
+            const ownAdd = await hospital.methods.ownerAddress().call({ from : accounts[0]});
+            console.log("Show This",ownAdd)
+            hospitalColl.push(ownAdd)
+        })
+        console.log("Try",hospitalColl)
+        setHospitalList(hospitalColl);
+        
+        //Get Hospital Data From Firebase
+
+            const markers = [];
+            await Firebase.firestore().collection('Hospitals').get()
+                    .then(querySnapshot => {
+                    querySnapshot.docs.forEach(doc => {
+                    markers.push(doc.data());
+                    });
+                });
+            console.log("Hospital List from Fb",markers)
+            setHospitalFirebase(markers)
         }
         catch(e){
 
@@ -43,7 +79,7 @@ function UserHome(props) {
     }, [])
     console.log("Cool",USerRequestList)
     // code for new request form
-
+    console.log("list Hello",HospitalList)
     const [title, settitle] = useState("")
 
     const [donationvalue, setdonationvalue] = useState("")
@@ -61,34 +97,58 @@ function UserHome(props) {
 
     const onRequestFormSubmit = async(event) =>{
         event.preventDefault();
+
+        setSpinner(true)
         try{
             const accounts = await web3.eth.getAccounts();
             const user = User(userAddress);
             await user.methods.createRequest(hospitalAddress,donationvalue,title,new Date()).send({from: accounts[0]});
+            console.log("Step 1")
+            const requestAdd = await user.methods.getLastAddedRequest().call({from: accounts[0]})
+                console.log(await user.methods)
+                    console.log("Our ID",requestAdd)
+                    const uploadTask = Firebase.storage().ref(`documents/${userDocuments.name}`).put(userDocuments);
+                    console.log(uploadTask);
+                    uploadTask.on('state_changed',
+                    snapshot => { },
+                    error => {
+                        console.log(error);
 
-            const uploadTask = Firebase.storage().ref(`documents/${userDocuments.name}`).put(userDocuments);
-            console.log(uploadTask);
-            uploadTask.on('state_changed',
-            snapshot => { },
-            error => {
-                console.log(error);
-
-            },
-            () => {
-                Firebase.storage().ref("documents")
-                    .child(userDocuments.name)
-                    .getDownloadURL()
-                    .then(url => { console.log(url); });
-            })
+                    },
+                    () => {
+                        console.log("Step 2")
+                        Firebase.storage().ref("documents")
+                            .child(userDocuments.name)
+                            .getDownloadURL()
+                            .then(url => { 
+                                console.log(url);
 
 
+                                Firebase.firestore().collection(`User`).doc(`${requestAdd}`).set({
+                                    hospitalAddress: hospitalAddress,
+                                    DonationValue: donationvalue,
+                                    Title : title,
+                                    Time : new Date(),
+                                    DocumentUrl : url
+                                });
+                                console.log("Data Stored")
+                            });
+                    })
+
+                    console.log("Step 3")
             
         }
         catch(error){
-
+            console.log(error)
+            setSpinner(false)
         }
+        setSpinner(false)
+        settitle("")
+        setdonationvalue("")
+        sethospitalAddress("")
+        setuserDocuments(null)
     }
-
+    console.log("list Hello last",HospitalList)
     return (
             <div className="userHome">
                 <div className="userHome__upper">
@@ -98,6 +158,7 @@ function UserHome(props) {
                         <h4>{uname}'s Dashboard</h4>
                         <Button className="upper__btnrgt" outline color="danger">AJ</Button>
                     </Alert>
+                    
                 </div>
                 <div className="userHome__dialog">
                     <UncontrolledCollapse toggler="#toggler">
@@ -115,11 +176,12 @@ function UserHome(props) {
                                     </FormGroup>
                                     <FormGroup row>
                                         <Label for="Donation" sm={2}>Donation</Label>
-                                        <Col sm={10}>
+                                        <Col sm={10} style={{display: "flex",alignItems: "center"}}>
                                         <Input type="number"
                                             value={donationvalue}
                                             onChange={e => setdonationvalue(e.target.value)}
                                             name="donation" id="donation" placeholder="Enter Donation Value" />
+                                            <h2><Badge color="warning">Ethere</Badge></h2>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -129,11 +191,13 @@ function UserHome(props) {
                                             value={hospitalAddress}
                                             onChange={e => sethospitalAddress(e.target.value)}
                                             name="select" id="exampleSelect">
-                                            {
-                                                HospitalList? HospitalList.map(hospital =>(
-                                                    <option value={hospital}>Pqr</option>
-                                                )) : <option >NO Hospital Available</option>
-                                            }
+                                            
+                                            { HospitalFirebase ? HospitalFirebase.map(hospital => (
+                                                    <option value={hospital.hospitalAddress} >
+                                                        {hospital.HospitalName}
+                                                    </option>
+                                                )) : <option >NO Hospital Available</option> }
+                                            
                                         </Input>
                                         </Col>
                                     </FormGroup>
@@ -147,7 +211,16 @@ function UserHome(props) {
                                     </FormGroup>
                                     <FormGroup check row>
                                         <Col sm={{ size: 10, offset: 2 }}>
-                                        <Button color="primary" className="request__btn" onClick={onRequestFormSubmit}>Submit</Button>
+                                        
+                                        
+                                        {  !Spinner ? <Button color="primary" className="request__btn" onClick={onRequestFormSubmit}>Submit</Button>
+                                        :
+                                            <Lottie 
+                                                options={defaultOptions}
+                                                height={100}
+                                                width={100}
+                                        />}
+                                        
                                         </Col>
                                     </FormGroup>
                                 </Form>
@@ -157,7 +230,6 @@ function UserHome(props) {
                 </div>
 
                 <div className="userHome__bottom">
-                    
                         <div className="userHome__requestlist">
                             <CardHeader className="requestlist__header"><h3>Your Request List</h3></CardHeader>
                                 <div className="requestList__overflow">
