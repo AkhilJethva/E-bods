@@ -3,6 +3,7 @@ import { Col, Container, Row,Card, CardTitle, CardText, CardImg, CardImgOverlay,
 import './Donate.css'
 import DonationRequest from './DonationRequest'
 import web3 from '../../ethereum/web3'
+import User from '../../ethereum/user'
 import donationSystem from '../../ethereum/donationSystem'
 
 
@@ -30,8 +31,8 @@ function Donate() {
 
 
     // BAckend access 
-
-    const [deployesUserList, setdeployesUserList] = useState(null);
+    const [activeRequests, setactiveRequests] = useState(null)
+    let allActiveRequestList = []
 
     useEffect(async() => {
         
@@ -40,7 +41,18 @@ function Donate() {
         const accounts = await web3.eth.getAccounts();
         const deployedUsers = await donationSystem.methods.getDeployedUsers().call({from: accounts[0]});
         console.log("hu j chu",deployedUsers);
-        setdeployesUserList(deployedUsers);
+        // setdeployesUserList(deployedUsers);
+        
+        deployedUsers.map(async(userAddress) => {
+            const user = User(userAddress);
+            const reqList = await user.methods.getActiveRequests().call({from: accounts[0]});
+            reqList.map(req => {
+                console.log("Request Is ::",req)
+                allActiveRequestList.push(req)  
+            })
+        })
+
+        setactiveRequests(allActiveRequestList)
         }
         catch(e){
 
@@ -50,6 +62,8 @@ function Donate() {
             
         }
     }, [])
+
+    console.log("All Request::",activeRequests)
 
     return (
         <div>
@@ -130,11 +144,11 @@ function Donate() {
                     <Button style={{float: "right", marginLeft:"96%", marginBottom:"7px"}} color="danger" onClick={onShowGrid} >X</Button>
                 </Row>
                 <Row>
-                        <DonationRequest />
-                        <DonationRequest />
-                        <DonationRequest />
-                        <DonationRequest />
-                        <DonationRequest /> 
+                    {
+                        activeRequests ? activeRequests.map(req => (
+                            <DonationRequest key={req} reqAdd={req} />
+                        ) ) : null
+                    } 
                 </Row>
             </Container>
             </div>

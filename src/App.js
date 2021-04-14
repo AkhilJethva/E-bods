@@ -16,6 +16,8 @@ import UserHome from './components/user/UserHome';
 import UserLogin from './components/user/UserLogin';
 import HospitalHome from './components/hospitals/HospitalHome';
 import Donate from './components/donation/Donate';
+import RequestDetail from './components/donation/RequestDetail';
+import UserRequestSec from './components/admin/UserRequestSec';
 
 
 function App(props) {
@@ -27,18 +29,21 @@ function App(props) {
           <NavbarLayout />
           <Switch>
             <PublicRoute exact path="/login" component={SignIn} />
-            <PublicRoute exact path="/donate" component={Donate} />
+            {/* <PrivateRoute exact path="/donate" component={Donate} /> */}
             <PublicRoute exact path="/signup" component={SignUp} />
             {/* <PublicRoute exact path="/home" component={Home} /> */}
             <PublicRoute exact path="/contactus" component={ContactUs} />
             <PublicRoute exact path="/aboutus" component={AboutUs} />
-            <PrivateRoute exact path="/home"><Home /></PrivateRoute>
-            <PrivateRoute exact path="/"><Home /></PrivateRoute>
-            <PublicRoute exact path="/userRegister" component={UserRegister} />
-            <PublicRoute exact path="/userhome/:id" component={UserHome}/>
-            <PublicRoute exact path="/userlogin" component={UserLogin}/>
-            <PublicRoute exact path="/admin/hospitalhome" component={HospitalHome}/>
-            <PublicRoute exact path="/adminpanel" component={AdminPanel} />
+            <PublicRoute exact path="/home"><Home /></PublicRoute>
+            <PublicRoute exact path="/"><Home /></PublicRoute>
+            <PrivateRoute exact path="/userRegister" ><UserRegister /></PrivateRoute>
+            <PrivateRoute exact path="/userhome/:id" ><UserHome /></PrivateRoute>
+            <PrivateRoute exact path="/donate/:id" ><RequestDetail /></PrivateRoute>
+            <PrivateRoute exact path="/userlogin" ><UserLogin /></PrivateRoute>
+            <PrivateRoute exact path="/admin/hospitalhome"><HospitalHome /></PrivateRoute>
+            <PrivateRoute exact path="/admin/userRequestSec" ><UserRequestSec /></PrivateRoute>
+            <PrivateRoute exact path="/adminpanel"> <AdminPanel /></PrivateRoute>
+            <PrivateRoute exact path="/donate"><Donate /></PrivateRoute>
           </Switch>
           <Footer />
       </div>

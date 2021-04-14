@@ -19,6 +19,7 @@
     "mocha": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-lottie": "^1.2.3",
     "react-popper": "^2.2.4",
     "react-private-public-route": "^1.0.3",
     "react-redux": "^5.1.1",

@@ -4,6 +4,8 @@ import s1 from '../../Images/Slider/s1.jpg'
 import s2 from '../../Images/Slider/s2.jpg'
 import s3 from '../../Images/Slider/s3.jpg'
 import './Home.css'
+import Lottie from 'react-lottie';
+import A1 from '../../animations/a1.json'
 
 function Home() {
 
@@ -30,15 +32,29 @@ function Home() {
           key: '3'
         }
       ];
+      const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: A1,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+      };
 
 
 
 
     return (
         <div className="home">
-            <Jumbotron>
+            <Jumbotron className="home__jumbotron">
+                <div>
                 <h1 className="display-4">Hello, Welcome to E-BODS! <img src="https://img.icons8.com/nolan/64/ethereum.png" alt="ether"/></h1>
-                <p className="lead"> The Futuristic and Digital Secured Donation System. </p>
+                <p className="lead"> The Futuristic and Digital Secured Donation System. </p> </div>
+                <Lottie 
+                  options={defaultOptions}
+                  height={200}
+                  width={200}
+                />
             </Jumbotron>
             <div  className="home__slider">
                 <UncontrolledCarousel items={items}></UncontrolledCarousel>

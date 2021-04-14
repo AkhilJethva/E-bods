@@ -1,10 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import {  Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink } from 'reactstrap';
 import  './Navbar.css'
 import SignInLinks from './SignInLinks';
 import SignoutLinks from './SignoutLinks';
 import { connect } from 'react-redux'
+import firebase from '../../config/fbconfig'
+import { Redirect } from 'react-router';
 
 function NavbarLayout(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +14,7 @@ function NavbarLayout(props) {
     const {auth} =  props;
 
 
+    const [Admins, setAdmins] = useState(null)
     
     return (
         <div className="navbar fluid">
@@ -39,7 +42,6 @@ function NavbarLayout(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         auth: state.firebase.auth
     }

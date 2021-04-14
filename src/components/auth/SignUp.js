@@ -4,6 +4,8 @@ import './SignUp.css'
 import { connect } from "react-redux";
 import {signUp} from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom';
+import Lottie from 'react-lottie';
+import A1 from '../../animations/21372-launch-yourself.json'
 
 function SignUp(props) {
 
@@ -11,6 +13,16 @@ function SignUp(props) {
     const [password, setpassword] = useState("")
     const [fname, setfname] = useState("")
     const [lname, setlname] = useState("")
+    
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: A1,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
+
     
     
     const handleSignup = (event) => {
@@ -26,6 +38,11 @@ function SignUp(props) {
     if(auth.uid) return <Redirect  to="/home"/>
     return (
         <div className="signup">
+            <div className="signUp__anim" ><Lottie 
+                    options={defaultOptions}
+                    height={250}
+                    width={250}
+                /></div>
             <div className="signup__body">
                 <h3>Sign Up Here</h3><br></br>
                 <Form onSubmit={handleSignup} >
