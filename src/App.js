@@ -28,12 +28,12 @@ function App(props) {
         <div className="App">
           <NavbarLayout />
           <Switch>
-            <PublicRoute exact path="/login" component={SignIn} />
+            <PublicRoute exact path="/login"  ><SignIn /></PublicRoute>
             {/* <PrivateRoute exact path="/donate" component={Donate} /> */}
-            <PublicRoute exact path="/signup" component={SignUp} />
+            <PublicRoute exact path="/signup" ><SignUp /></PublicRoute>
             {/* <PublicRoute exact path="/home" component={Home} /> */}
-            <PublicRoute exact path="/contactus" component={ContactUs} />
-            <PublicRoute exact path="/aboutus" component={AboutUs} />
+            <PublicRoute exact path="/contactus"><ContactUs /></PublicRoute>
+            <PublicRoute exact path="/aboutus"  ><AboutUs /></PublicRoute>
             <PublicRoute exact path="/home"><Home /></PublicRoute>
             <PublicRoute exact path="/"><Home /></PublicRoute>
             <PrivateRoute exact path="/userRegister" ><UserRegister /></PrivateRoute>
