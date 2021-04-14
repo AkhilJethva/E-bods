@@ -1,0 +1,42 @@
+.userRequestSec{
+    background-color: #fff;
+}
+.userRequestSec__header{
+    text-align: center;
+    padding: 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+.cardTitlesAlign{
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+.cardTitlesAlign > h4{
+    margin-right: 30px;
+    color: green;
+}
+.cardTextLight {
+    color: gray;
+}
+    
+.requestTable{
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 310px;
+}
+
+.requestTable::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;               /* width of the entire scrollbar */
+}
+.requestTable::-webkit-scrollbar-track {
+    background: #fff;        /* color of the tracking area */
+}
+
+.requestTable::-webkit-scrollbar-thumb {
+    background-color: rgba(5, 5, 10, 0.336);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    /* border: 3px solid orange;  creates padding around scroll thumb */
+}

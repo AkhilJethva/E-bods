@@ -76,6 +76,7 @@ class Adminpanel extends Component {
             <div className="adminPanel">
                 <marquee scrollamount="10"  className="adminPanel__marquee"><h5>🙏🙏Operations On Ethereum block-chain take 15-30 seconds to complete. Please have some patience🙏🙏</h5></marquee>
                 <div className="adminPanel__header"><hr></hr>
+                <Link to="/admin/userRequestSec"><Button color="success">User Request Section</Button></Link>
                     <div className="adminPanel__headerTitle">
                         <h2>Welcome to Admin Panel </h2>
                         <img alt="" src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png"/>
