@@ -12,10 +12,9 @@ function ContactUs(props) {
         width: '90%',
         height: '55%',
         borderRadius : "10px"
-       
     };
     return (
-        <div className="contactUs">
+        <div className="contactUs" id="loader-wrappe">
             <img 
                 className="contactUs__image"
                 src={b1}

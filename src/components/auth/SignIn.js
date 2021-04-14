@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SignIn.css'
 import {connect} from 'react-redux'
@@ -7,12 +7,23 @@ import { Redirect } from 'react-router-dom';
 
 import firebase from '../../config/fbconfig'
 
+import Lottie from 'react-lottie';
+import A1 from '../../animations/50124-user-profile.json'
 
 
 function SignIn(props) {
 
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: A1,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
   
   
   const handleLogin = (event) => {
@@ -36,6 +47,11 @@ function SignIn(props) {
 
   return (
     <div className="signin">
+            <div className="signIN__anim" ><Lottie 
+                  options={defaultOptions}
+                  height={200}
+                  width={200}
+                /></div>
       <div className="signin__body">
         <h3>LogIn Here</h3><br></br>
         <Form onSubmit={handleLogin}>
