@@ -49,7 +49,7 @@ function SignIn(props) {
     <div className="signin">
             <div className="signIN__anim" ><Lottie 
                   options={defaultOptions}
-                  height={200}
+                  height={201}
                   width={200}
                 /></div>
       <div className="signin__body">
