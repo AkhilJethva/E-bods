@@ -18,7 +18,7 @@ function UserLogin(props) {
         seterror("")
         await window.ethereum.enable()
         try{
-            if(email != props.auth.email){
+            if(email !== props.auth.email){
                 throw "Please Enter the Same Email That you Registered With";
             }
             const accounts = await web3.eth.getAccounts();

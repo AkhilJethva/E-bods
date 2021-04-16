@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from 'react'
 import { Card, CardBody, CardHeader, CardText, CardTitle } from 'reactstrap'
 import './UserRequest.css'
-import web3 from '../../ethereum/web3'
-import Request from '../../ethereum/request'
+// import web3 from '../../ethereum/web3'
+// import Request from '../../ethereum/request'
 import firebase from '../../config/fbconfig'
 
 function UserRequest(props) {
@@ -13,12 +13,12 @@ function UserRequest(props) {
     useEffect(async() => {
         try{
 
-            const accounts = await web3.eth.getAccounts();
-            const request = Request(requestAddress);
+            // const accounts = await web3.eth.getAccounts();
+            // const request = Request(requestAddress);
 
             var docRef = firebase.firestore().collection(`User`).doc(`${requestAddress}`);
             
-            docRef.get().then((doc) => {
+            docRef.get().then(async(doc) => {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
                     setData(doc.data())
