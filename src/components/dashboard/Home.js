@@ -9,6 +9,8 @@ import A1 from '../../animations/a1.json'
 
 function Home() {
 
+    
+
     const items = [
         {
           src: s1,
@@ -49,12 +51,13 @@ function Home() {
             <Jumbotron className="home__jumbotron">
                 <div>
                 <h1 className="display-4">Hello, Welcome to E-BODS! <img src="https://img.icons8.com/nolan/64/ethereum.png" alt="ether"/></h1>
-                <p className="lead"> The Futuristic and Digital Secured Donation System. </p> </div>
-                <Lottie 
+                <p className="lead"> The Futuristic and Digital Secured Donation System. </p>
+                </div>
+                <div className="home__lotti"><Lottie 
                   options={defaultOptions}
                   height={200}
                   width={200}
-                />
+                /></div>
             </Jumbotron>
             <div  className="home__slider">
                 <UncontrolledCarousel items={items}></UncontrolledCarousel>

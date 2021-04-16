@@ -103,13 +103,13 @@
 
 @media(max-width: 727px){
     .footer{
-        height: 80vh;
+        height: auto;
         border-radius: 0 0 0 0;
     }
 }
 @media(max-width: 600px){
     .footer{
-        height: 120vh;
+        height: auto;
         border-radius: 0 0 0 0;
     }
     h1{
