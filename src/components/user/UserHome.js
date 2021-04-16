@@ -11,11 +11,12 @@ import Firebase from '../../config/fbconfig';
 import Hospital from '../../ethereum/hospital';
 import Lottie from 'react-lottie';
 import Spin from '../../animations/46472-lurking-cat.json'
+import { useParams } from 'react-router'
 
 
 function UserHome(props) {
-
-    const [userAddress, setuserAddress] = useState(props.location.pathname.substr(10))
+    let {id} = useParams();
+    const [userAddress, setuserAddress] = useState(id)
     const [uname, setuname] = useState("")
     const {auth} = props;
     const [HospitalList, setHospitalList] = useState([])

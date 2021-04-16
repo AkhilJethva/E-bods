@@ -5,7 +5,23 @@
 }
 .display-4{
     color: black
+
 }
 .home__jumbotron{
     display: flex;
+    flex-direction:row;
+}
+
+.home__lotti{
+    margin-left: 10%;
+}
+
+@media (max-width: 767px) {
+    
+    .home__lotti{
+        position:relative;
+    }
+    .home__jumbotron{
+        flex-direction: column;
+    }
 }

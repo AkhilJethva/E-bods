@@ -6,16 +6,20 @@ import web3 from '../../ethereum/web3'
 import Request from '../../ethereum/request'
 import Lottie from 'react-lottie';
 import Spin from '../../animations/46472-lurking-cat.json'
+import { useParams } from "react-router-dom"
 
 
 
 
 function RequestDetail(props) {
-    const [requestAddress, setrequestAddress] = useState(props.location.pathname.substr(10));
+    let { id } = useParams();
+    const [requestAddress, setrequestAddress] = useState(id);
     const [Data, setData] = useState(null)
     const [etherValue, setetherValue] = useState("")
     const [DonarName, setDonarName] = useState("")
     const [Spinner, setSpinner] = useState(false)
+
+    
 
     const defaultOptions = {
         loop: true,
