@@ -1,5 +1,5 @@
 import React from 'react'
-import { Jumbotron, UncontrolledCarousel } from "reactstrap";
+import { Card, CardHeader, Jumbotron, UncontrolledCarousel } from "reactstrap";
 import s1 from '../../Images/Slider/s1.jpg'
 import s2 from '../../Images/Slider/s2.jpg'
 import s3 from '../../Images/Slider/s3.jpg'
@@ -62,39 +62,14 @@ function Home() {
             <div  className="home__slider">
                 <UncontrolledCarousel items={items}></UncontrolledCarousel>
             </div>
-            <div>
-                sdfgusdjb
-
-                {/* <div>
-                  <a href="https://firebasestorage.googleapis.com/v0/b/login-4a0ac.appspot.com/o/documents%2FB276F18AdmitCard.pdf?alt=media&token=be882aa0-7a0c-4ef6-b92e-d80093966b0b">helli</a>
-                  </div> */}
-                dfd
-                for(let sdf
-                dsf
-                sd
-                
-                
-                <br></br>
-                <br></br>
-                
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                sfdf
-                
-                fsf
-                 in object) {
-                    
-                }
-                
+            <div className="home__about">
+              <Card className="homeAbout__card">
+                  <h2>Who Are we?</h2>
+                  <p>We are E-BODS. An open and non-profitable donation System. We are helping peoples to raise funds in critical and life-taking situations.
+                      Our system is most secure and transparent. We are in the process of making one's life happy in urgent medical aid as well as helping orphans.
+                  </p>
+              </Card>
             </div>
-
         </div>
     )
 }

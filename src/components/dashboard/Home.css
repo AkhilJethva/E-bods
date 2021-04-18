@@ -16,6 +16,21 @@
     margin-left: 10%;
 }
 
+.home__about{
+    margin: 30px ;
+}
+.homeAbout__card{
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+.homeAbout__card > h2{
+    border-bottom: 2px solid #6f42c1;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 20px;
+}
 @media (max-width: 767px) {
     
     .home__lotti{
@@ -23,5 +38,8 @@
     }
     .home__jumbotron{
         flex-direction: column;
+    }
+    .homeAbout__card{
+        width: auto;
     }
 }
