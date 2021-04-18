@@ -34,7 +34,7 @@ function RequestDetail(props) {
         // firebase.firestore().collection('User').get()
         console.log(requestAddress)
         const docId = requestAddress
-        var docRef = firebase.firestore().collection(`User`).doc(`0x${docId}`);
+        var docRef = firebase.firestore().collection(`User`).doc(`${docId}`);
         console.log(docRef)
         docRef.get().then((doc) => {
             if (doc.exists) {

@@ -67,7 +67,7 @@ function Donate() {
 
     return (
         <div>
-            <h3>Hello Donation</h3>
+            
             <div className="donate__backgrid">
                 <h3><hr></hr>
                     Make A Difference And <Button color="success" onClick={onDonateHandle}>Donate</Button> 
